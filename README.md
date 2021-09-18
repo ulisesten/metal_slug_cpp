@@ -1,2 +1,3 @@
-# cpp_template
+# Metal Slug in C++
+
 C++ cmake template

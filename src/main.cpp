@@ -1,12 +1,21 @@
 #include <iostream>
 
-#include "my_class.hpp"
+#include "personages/soldier_class.hpp"
+#include "personages/player_class.hpp"
 
 int main(){
 
-    Foo foo;
+    Player player("Marco");
+    Soldier soldier("Gun Soldier");
 
-    foo.test();
+    KnifeAttack knife;
+    GunAttack gunAttack;
+    
+    player.setAttackBehavior(&knife);
+    soldier.setAttackBehavior(&gunAttack);
+
+    soldier.attack(&player);
+    player.attack(&soldier);
 
     return 0;
 }
