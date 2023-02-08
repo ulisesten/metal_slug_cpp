@@ -1,4 +1,4 @@
-#include "personages/player_class.hpp"
+#include "strategy/player_class.hpp"
 
 #include <iostream>
 

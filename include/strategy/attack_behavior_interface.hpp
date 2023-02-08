@@ -3,8 +3,11 @@
 #include "soldier_class.hpp"
 #include <iostream>
 
-class Soldier; //forward declaration
+class Soldier;
 
+
+
+/**Interface*/
 class IAttackBehavior {
 public:
     virtual void performAttack(Soldier* attacker, Soldier* who) = 0;

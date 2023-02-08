@@ -2,7 +2,7 @@
  * 
 */
 
-#include "personages/attack_behavior_interface.hpp"
+#include "strategy/attack_behavior_interface.hpp"
 
 void KnifeAttack::performAttack(Soldier* attacker, Soldier* who) {
     std::cout << attacker->getName() << " knifing to " << who->getName() << std::endl;

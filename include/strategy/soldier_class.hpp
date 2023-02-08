@@ -6,6 +6,10 @@
 class IAttackBehavior;
 
 class Soldier {
+    protected:
+        std::string _name;
+        IAttackBehavior* _behavior;
+
     public:
         Soldier(std::string name): _name(name), _behavior(0){}
 
@@ -13,10 +17,6 @@ class Soldier {
 
         void setAttackBehavior(IAttackBehavior* b);
 
-        const std::string& getName() const { return this->_name; };
-
-    protected:
-        std::string _name;
-        IAttackBehavior* _behavior;
+        const std::string& getName() const;
         
 };
