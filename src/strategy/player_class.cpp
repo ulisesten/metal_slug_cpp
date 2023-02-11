@@ -1,4 +1,4 @@
-#include "strategy/player_class.hpp"
+#include "player_class.h"
 
 #include <iostream>
 

@@ -1,17 +1,20 @@
+
+
 #include <iostream>
+#include <SDL2/SDL_surface.h>
+#include <zlib.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_joystick.h>
+#include <SDL2/SDL_gamecontroller.h>
+#include <SDL2/SDL_image.h>
 #include <memory>
-
-#include "sdl/graphics.hpp"
-
-#include "strategy/soldier_class.hpp"
-#include "strategy/player_class.hpp"
+#include "soldier_class.h"
+#include "player_class.h"
 
 using std::shared_ptr;
 
 int main(){
-    
-    //shared_ptr<SDL_Surface* pSurface;
-    //shared_ptr<Graphics> graphics = Graphics::getPtr();
     SDL_Window* window = nullptr;
     SDL_Surface* screen = nullptr;
 
@@ -58,7 +61,7 @@ int main(){
     //pSurface = IMG_Load("assets/superbad.jpg");
 
     if( surface == NULL ) {
-        std::cout << "Unable to load image %s! SDL Error: %s\n" << "02_getting_an_image_on_the_screen/hello_world.bmp" << SDL_GetError() << std::endl;
+        std::cout << "Unable to load image %s! SDL Error: %s\n" << SDL_GetError() << std::endl;
     }
 
     SDL_BlitSurface( surface, NULL, screen, NULL );

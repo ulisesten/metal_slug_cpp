@@ -1,4 +1,4 @@
-#include "strategy/soldier_class.hpp"
+#include "soldier_class.h"
 
 #include <iostream>
 
@@ -18,3 +18,29 @@ void Soldier::setAttackBehavior(IAttackBehavior* b){
 }
 
 const std::string& Soldier::getName() const { return this->_name; };
+
+
+void Soldier::move() {
+
+};
+
+
+void Soldier::paint() {
+
+};
+
+
+void Soldier::update() {
+
+};
+
+
+void Soldier::setDirection() {
+
+};
+
+
+void Soldier::keyPressed(SDL_Event event) {
+
+};
+

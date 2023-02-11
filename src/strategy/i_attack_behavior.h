@@ -1,6 +1,6 @@
 #pragma once
 
-#include "soldier_class.hpp"
+#include "soldier_class.h"
 #include <iostream>
 
 class Soldier;
