@@ -1,4 +1,4 @@
-
+/// Ulisesten
 
 #include <iostream>
 #include <SDL2/SDL_surface.h>
@@ -8,22 +8,24 @@
 #include <SDL2/SDL_joystick.h>
 #include <SDL2/SDL_gamecontroller.h>
 #include <SDL2/SDL_image.h>
-#include <memory>
 #include "soldier_class.h"
 #include "player_class.h"
+#include "scenario.h"
 
-using std::shared_ptr;
+#include "clark_rects.h"
+
 
 int main(){
     SDL_Window* window = nullptr;
-    SDL_Surface* screen = nullptr;
+    SDL_Renderer* renderer = nullptr;
+    int maxWidth, maxHeight;
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_JOYSTICK) < 0) {
         SDL_Log("Error SDL_Init %s", SDL_GetError());
         exit(-1);
     }
 
-    window = SDL_CreateWindow("Metal Slug",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,800,600,SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("Metal Slug",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,502, 260,SDL_WINDOW_OPENGL);
 
 
     if(!window) {
@@ -31,23 +33,13 @@ int main(){
         exit(-2);
     }
 
-    screen = SDL_GetWindowSurface(window);
-    //SDL_GetWindowSize(window, &maxWidth, &maxHeight);
-
-    /*renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
-
-
-    if(!renderer) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create renderer: %s",
-                     SDL_GetError());
-        return -3;
-    }*/
-
+    
+    SDL_GetWindowSize(window, &maxWidth, &maxHeight);
 
 
     if(IMG_Init(IMG_INIT_JPG) < 0) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                         "Couldn't init SDL_image: %s", SDL_GetError());
+                        "Couldn't init SDL_image: %s", SDL_GetError());
         exit(-4);
     }
 
@@ -57,32 +49,39 @@ int main(){
         return -5;
     }*/
 
-    SDL_Surface* surface = IMG_Load("assets/superbad.jpg");
-    //pSurface = IMG_Load("assets/superbad.jpg");
-
-    if( surface == NULL ) {
-        std::cout << "Unable to load image %s! SDL Error: %s\n" << SDL_GetError() << std::endl;
+    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
+    if(!renderer) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create renderer: %s",
+                     SDL_GetError());
+        return -3;
     }
 
-    SDL_BlitSurface( surface, NULL, screen, NULL );
-
-    SDL_UpdateWindowSurface( window );
-    SDL_Delay(1000);
-    SDL_FreeSurface(surface);
 
     /*
-    Player player("Marco");
     Soldier soldier("Gun Soldier");
-
     KnifeAttack knife;
     GunAttack gunAttack;
-    
     player.setAttackBehavior(&knife);
     soldier.setAttackBehavior(&gunAttack);
-
     soldier.attack(&player);
     player.attack(&soldier);
     */
+
+    IPlayerRects* mPlayerRects = new ClarkRects();
+;    Player* player = new Player("Marco", "assets/clark.png", renderer, mPlayerRects);
+    SceneRects m_sceneRects;
+
+
+    Scenario scenario( 
+        renderer, 
+        maxWidth, 
+        maxHeight, 
+        (IGameElement*)player, 
+        "assets/mision1.png", 
+        &m_sceneRects
+    );
+
+    scenario.actionPerformed();
 
     return 0;
 }

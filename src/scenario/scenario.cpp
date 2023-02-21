@@ -5,12 +5,14 @@
 #include "scenario.h"
 #include <SDL2/SDL_image.h>
 
-Scenario::Scenario(SDL_Renderer* renderer, int maxWidth, int maxHeight, IGameElement* gameElement){
+Scenario::Scenario(SDL_Renderer* renderer, int maxWidth, int maxHeight, IGameElement* gameElement, const char* sceneBackground, SceneRects* sceneRects){
     this->renderer = renderer;
     this->maxWidth = maxWidth;
     this->maxHeight = maxHeight;
 
-    surface = IMG_Load("cheese_bk.jpg");
+    this->sceneRects = sceneRects;
+
+    surface = IMG_Load(sceneBackground);
     if(!surface) SDL_LogError (SDL_LOG_CATEGORY_APPLICATION,
     "Couldn't load surface: %s", IMG_GetError());
 
@@ -30,7 +32,9 @@ Scenario::Scenario(SDL_Renderer* renderer, int maxWidth, int maxHeight, IGameEle
 }
 
 void Scenario::paint() {
-    SDL_RenderCopy(renderer, texture, nullptr, &rect);
+    SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect3(), sceneRects->getPositionRect3());
+    SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect2(), sceneRects->getPositionRect2());
+    SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect1(), sceneRects->getPositionRect1());
 }
 
 void Scenario::actionPerformed() {
@@ -39,30 +43,25 @@ void Scenario::actionPerformed() {
 
         frameStart = SDL_GetTicks();
 
-        this->handleEvents();
+        quit = this->handleEvents();
 
-        if (event.type == SDL_QUIT) {
-            quit = 1;
-        }
-
-        //Code here
         SDL_RenderClear(renderer);
 
         this->paint();
         gameElement->paint();
-        gameElement->setDirection();
+
 
         current = SDL_GetTicks();
         current_position = SDL_GetTicks();
 
-        if (current > past + 80) {
+        if (current > past + 170) {
             past = current;
             gameElement->update();
         }
 
         if (current_position > past_position + 20) {
             past_position = current_position;
-            gameElement->move();
+            //gameElement->move();
         }
 
         SDL_RenderPresent(renderer);
@@ -77,15 +76,21 @@ void Scenario::actionPerformed() {
 
 }
 
-void Scenario::handleEvents(){
+bool Scenario::handleEvents(){
     if (SDL_PollEvent(&event)){
         switch(event.type){
-            case SDL_FINGERDOWN: {
-                keyPressed(event);
+            case SDL_QUIT: {
+                return true;
+            }
+
+            case SDL_KEYDOWN: {
+                gameElement->keyPressed(event);
                 break;
             }
         }
     }
+
+    return false;
 }
 
 void Scenario::keyPressed(SDL_Event _event){
