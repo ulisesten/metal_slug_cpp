@@ -35,6 +35,8 @@ void Scenario::paint() {
     SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect3(), sceneRects->getPositionRect3());
     SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect2(), sceneRects->getPositionRect2());
     SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect1(), sceneRects->getPositionRect1());
+
+    gameElement->paint();
 }
 
 void Scenario::actionPerformed() {
@@ -48,8 +50,6 @@ void Scenario::actionPerformed() {
         SDL_RenderClear(renderer);
 
         this->paint();
-        gameElement->paint();
-
 
         current = SDL_GetTicks();
         current_position = SDL_GetTicks();
