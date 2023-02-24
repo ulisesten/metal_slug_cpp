@@ -13,6 +13,8 @@ set(SRC src/main.cpp
         src/player_rects/clark_rects.cpp
 )
 
+set(CMAKE_BUILD_TYPE Debug)
+
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 

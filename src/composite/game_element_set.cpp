@@ -28,7 +28,10 @@ void GameElementSet::paint() {
 
 void GameElementSet::update() {
 
-    for (auto & el: elementsList){
+    /*for (auto & el: elementsList){
+        el->update();
+    }*/
+    for (IGameElement* el: elementsList){
         el->update();
     }
 

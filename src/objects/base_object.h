@@ -15,11 +15,11 @@ protected:
     bool increment_sprite_index = true;
 
     /// SDL stuff
-    SDL_Renderer* renderer;
-    SDL_Surface* object_surface;
-    SDL_Texture* object_texture;
+    SDL_Renderer* renderer = nullptr;
+    SDL_Surface* object_surface = nullptr;
+    SDL_Texture* object_texture = nullptr;
     SDL_Event event;
-    SDL_Rect* sprite_rects_array;
+    SDL_Rect* sprite_rects_array = nullptr;
     SDL_Rect sprite_rect;
     SDL_Rect rect;
     int sprite_rect_limit;

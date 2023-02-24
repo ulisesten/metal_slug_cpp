@@ -43,7 +43,7 @@ void Scenario::actionPerformed() {
 
     while (!quit) {
 
-        frameStart = SDL_GetTicks();
+        frameStart = SDL_GetTicks64();
 
         quit = this->handleEvents();
 
@@ -51,8 +51,8 @@ void Scenario::actionPerformed() {
 
         this->paint();
 
-        current = SDL_GetTicks();
-        current_position = SDL_GetTicks();
+        current = SDL_GetTicks64();
+        current_position = SDL_GetTicks64();
 
         if (current > past + 170) {
             past = current;
@@ -83,6 +83,11 @@ bool Scenario::handleEvents(){
                 return true;
             }
 
+            case SDLK_f: {
+                //ToggleFullscreen();
+                break;
+            }
+
             case SDL_KEYDOWN: {
                 gameElement->keyPressed(event);
                 break;
@@ -98,5 +103,15 @@ void Scenario::keyPressed(SDL_Event _event){
 }
 
 void Scenario::keyReleased(SDL_Event){
+
+}
+
+void ToggleFullscreen(SDL_Window* window) {
+
+    Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
+
+    bool IsFullscreen = SDL_GetWindowFlags(window) & FullscreenFlag;
+    SDL_SetWindowFullscreen(window, IsFullscreen ? 0 : FullscreenFlag);
+    SDL_ShowCursor(IsFullscreen);
 
 }

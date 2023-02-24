@@ -31,6 +31,8 @@ ClarkRects::ClarkRects(){
     legsRunningRect[5].x=201; legsRunningRect[5].y=434;
     legsRunningRect[5].w=34;  legsRunningRect[5].h=34;
 
+    torso_position_rect = {3, sprite_compensation, 0, 0};
+
 }
 
 SDL_Rect* ClarkRects::getTorsoStandRect(){
@@ -48,6 +50,12 @@ SDL_Rect* ClarkRects::getTorsoRunningRect(){
 
 SDL_Rect* ClarkRects::getLegsRunningRect(){
     return legsRunningRect;
+};
+
+SDL_Rect ClarkRects::getTorsoPositionRect(SDL_Rect src){
+    src.x += torso_position_rect.x;
+    src.y -= torso_position_rect.y;
+    return src;
 };
 
 int ClarkRects::getTorsoMaxStandingIndex(){

@@ -13,12 +13,13 @@
 #include "scenario.h"
 
 #include "clark_rects.h"
+#include "game_element_set.h"
 
 
 int main(){
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
-    int maxWidth, maxHeight;
+    int maxWidth = 502, maxHeight = 260;
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_JOYSTICK) < 0) {
         SDL_Log("Error SDL_Init %s", SDL_GetError());
@@ -34,7 +35,7 @@ int main(){
     }
 
     
-    SDL_GetWindowSize(window, &maxWidth, &maxHeight);
+    //SDL_GetWindowSize(window, &maxWidth, &maxHeight);
 
 
     if(IMG_Init(IMG_INIT_JPG) < 0) {
@@ -67,16 +68,22 @@ int main(){
     player.attack(&soldier);
     */
 
+    SDL_Rect rect1 = {100, 100, 50, 50};
+    SDL_Rect rect2 = {150, 100, 50, 50};
     IPlayerRects* mPlayerRects = new ClarkRects();
-;    Player* player = new Player("Marco", "assets/clark.png", renderer, mPlayerRects);
+    IGameElement* player = new Player("Clark", "assets/clark.png", renderer, mPlayerRects, rect1);
+    //IGameElement* player2 = new Player("Clark2", "assets/clark.png", renderer, mPlayerRects, rect2);
     SceneRects m_sceneRects;
 
-
+    GameElementSet* gameElementSet = new GameElementSet();
+    gameElementSet->add(player);
+    //gameElementSet->add((IGameElement*)player2);
+    
     Scenario scenario( 
         renderer, 
         maxWidth, 
         maxHeight, 
-        (IGameElement*)player, 
+        (IGameElement*)gameElementSet, 
         "assets/mision1.png", 
         &m_sceneRects
     );

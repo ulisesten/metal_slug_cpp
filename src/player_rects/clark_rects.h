@@ -6,11 +6,14 @@
 
 class ClarkRects: public IPlayerRects {
 
+    const int sprite_compensation = 30;
     /// @brief animates the sprite when player its just standing
     SDL_Rect torsoStandRect[4];
     SDL_Rect legsStandRect[1];
     //SDL_Rect torsoRunningRect[4];
     SDL_Rect legsRunningRect[6];
+
+    SDL_Rect torso_position_rect;
 
 public:
     ClarkRects();
@@ -18,6 +21,8 @@ public:
     SDL_Rect* getLegsStandRect();
     SDL_Rect* getTorsoRunningRect();
     SDL_Rect* getLegsRunningRect();
+
+    SDL_Rect getTorsoPositionRect(SDL_Rect src);
 
     int getTorsoMaxStandingIndex();
     int getLegsMaxStandingIndex();
