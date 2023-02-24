@@ -68,16 +68,14 @@ int main(){
     player.attack(&soldier);
     */
 
-    SDL_Rect rect1 = {100, 100, 50, 50};
-    SDL_Rect rect2 = {150, 100, 50, 50};
+    SDL_Rect player1PositionRect = {100, 100, 50, 50};
+    
     IPlayerRects* mPlayerRects = new ClarkRects();
-    IGameElement* player = new Player("Clark", "assets/clark.png", renderer, mPlayerRects, rect1);
-    //IGameElement* player2 = new Player("Clark2", "assets/clark.png", renderer, mPlayerRects, rect2);
+    IGameElement* player = new Player("Clark", "assets/clark.png", renderer, mPlayerRects, player1PositionRect);
     SceneRects m_sceneRects;
 
     GameElementSet* gameElementSet = new GameElementSet();
     gameElementSet->add(player);
-    //gameElementSet->add((IGameElement*)player2);
     
     Scenario scenario( 
         renderer, 

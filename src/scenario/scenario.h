@@ -51,9 +51,9 @@ public:
     void paint();
 
     void actionPerformed();
-    bool handleEvents();
-    void keyPressed(SDL_Event);
-    void keyReleased(SDL_Event);
+    //bool handleEvents();
+    //void keyPressed();
+    //void keyReleased();
 
     int getWidth() const {
         return maxWidth;

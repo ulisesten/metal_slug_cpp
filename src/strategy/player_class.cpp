@@ -12,15 +12,38 @@ void Player::networking() {
     
 }
 
-void Player::keyPressed(SDL_Event event) {
+bool Player::handleEvents() {
+    if (SDL_PollEvent(&event)){
+        switch(event.type){
+            case SDL_QUIT: {
+                //SDL_Log("Quiting from player_class");
+                return true;
+            }
+
+            case SDLK_f: {
+                //ToggleFullscreen();
+                break;
+            }
+
+            case SDL_KEYDOWN: {
+                this->keyPressed();
+                break;
+            }
+        }
+    }
+
+    return false;
+}
+
+void Player::keyPressed() {
 
 
-    /*if(event.key.keysym.sym == SDLK_RIGHT){
-
+    if(event.key.keysym.sym == SDLK_RIGHT){
+        SDL_Log("going right");
         Soldier::direction = RIGHT;
 
     } else if(event.key.keysym.sym == SDLK_LEFT){
-
+        SDL_Log("going left");
         Soldier::direction = LEFT;
 
     } else if(event.key.keysym.sym == SDLK_UP){
@@ -31,5 +54,5 @@ void Player::keyPressed(SDL_Event event) {
 
         Soldier::direction = DOWN;
 
-    }*/
+    }
 };

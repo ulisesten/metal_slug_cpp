@@ -45,7 +45,7 @@ void Scenario::actionPerformed() {
 
         frameStart = SDL_GetTicks64();
 
-        quit = this->handleEvents();
+        quit = gameElement->handleEvents();
 
         SDL_RenderClear(renderer);
 
@@ -76,37 +76,7 @@ void Scenario::actionPerformed() {
 
 }
 
-bool Scenario::handleEvents(){
-    if (SDL_PollEvent(&event)){
-        switch(event.type){
-            case SDL_QUIT: {
-                return true;
-            }
-
-            case SDLK_f: {
-                //ToggleFullscreen();
-                break;
-            }
-
-            case SDL_KEYDOWN: {
-                gameElement->keyPressed(event);
-                break;
-            }
-        }
-    }
-
-    return false;
-}
-
-void Scenario::keyPressed(SDL_Event _event){
-    gameElement->keyPressed(_event);
-}
-
-void Scenario::keyReleased(SDL_Event){
-
-}
-
-void ToggleFullscreen(SDL_Window* window) {
+void toggleFullscreen(SDL_Window* window) {
 
     Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
 

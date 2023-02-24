@@ -20,7 +20,8 @@ public:
     void paint();
     void update();
     void setDirection();
-    void keyPressed(SDL_Event event);
+    void keyPressed() override;
+    bool handleEvents() override;
 };
 
 #endif //__GAME_ELEMENT_SET_H__

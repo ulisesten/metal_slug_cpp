@@ -28,18 +28,25 @@ void GameElementSet::paint() {
 
 void GameElementSet::update() {
 
-    /*for (auto & el: elementsList){
-        el->update();
-    }*/
     for (IGameElement* el: elementsList){
         el->update();
     }
 
 }
 
-void GameElementSet::keyPressed(SDL_Event event) {
+bool GameElementSet::handleEvents() {
+    bool quit_game;
     for (auto & el: elementsList){
-        el->keyPressed(event);
+        quit_game = el->handleEvents();
+        if(quit_game) return true;
+    }
+
+    return false;
+}
+
+void GameElementSet::keyPressed() {
+    for (auto & el: elementsList){
+        el->keyPressed();
     }
 }
 
