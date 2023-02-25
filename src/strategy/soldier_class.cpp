@@ -66,19 +66,28 @@ void Soldier::move() {
 
 void Soldier::paint() {
     if(BaseObject::is_visible){
-        SDL_RenderCopy(renderer, object_texture, &sprite_leg_rect,   &leg_position_rect);
-        SDL_RenderCopy(renderer, object_texture, &sprite_torso_rect, &torso_position_rect);
+        if( direction == RIGHT ) {
+            SDL_RenderCopy(renderer, object_texture, &sprite_leg_rect,   &leg_position_rect);
+            SDL_RenderCopy(renderer, object_texture, &sprite_torso_rect, &torso_position_rect);
+        }
+
+        else if( direction == LEFT ) {
+            SDL_Point point = {(sprite_torso_rect.w/2)-2, sprite_torso_rect.h/2};
+            SDL_RenderCopyEx(renderer, object_texture, &sprite_leg_rect,   &leg_position_rect, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
+            SDL_RenderCopyEx(renderer, object_texture, &sprite_torso_rect, &torso_position_rect, 0.0, &point, SDL_FLIP_HORIZONTAL);
+        }
     }
 };
 
 
 void Soldier::update() {
-    //std::cout << "updating\n";
+
     if(torso_index >= sprite_rect_limit) torso_index = 0;
 
     sprite_torso_rect = sprite_torso_rects_array[torso_index];
     
     torso_index++;
+    
 };
 
 
