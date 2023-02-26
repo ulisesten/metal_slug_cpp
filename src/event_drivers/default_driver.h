@@ -4,9 +4,11 @@
 #include "i_event_driver.h"
 
 class DefaultDriver: public IEventDriver {
-    SDL_Event default_event;
+
 public:
-    bool getEvent(SDL_Event* event) override;
+    int getEventType();
+    bool handleEvents(SDL_Event* event, int* direction) override;
+    
 };
 
 #endif //__DEFAULT_DRIVER_H__

@@ -8,15 +8,12 @@ class NetworkDriver: public IEventDriver {
     SDL_Event network_event;
     sio::client io;
     SDL_Event _event;
-public:
-    NetworkDriver();
 
-    bool getEvent(SDL_Event* event);
-    /*
-        sio.on("event", [nullptr](cb){
-            SDL_PushEvent(event);
-        });
-    */
+public:
+    NetworkDriver(std::string server_url);
+
+    int getEventType();
+    bool handleEvents(SDL_Event* event, int* direction) override;
 };
 
 #endif //__NETWORK_DRIVER_H__

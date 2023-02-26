@@ -12,6 +12,6 @@ public:
     Player(const std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* player_rects, SDL_Rect position_rect, IEventDriver* eventDriver);
     void networking();
     void keyPressed() override;
-    bool handleEvents() override;
+    bool handleEvents(SDL_Event event) override;
 
 };

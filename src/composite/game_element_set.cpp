@@ -34,11 +34,12 @@ void GameElementSet::update() {
 
 }
 
-bool GameElementSet::handleEvents() {
-    bool quit_game;
-    for (auto & el: elementsList){
-        quit_game = el->handleEvents();
-        if(quit_game) return true;
+bool GameElementSet::handleEvents(SDL_Event event) {
+
+    for (IGameElement* el: elementsList){
+
+        if(el->handleEvents(event)) return true;
+        
     }
 
     return false;

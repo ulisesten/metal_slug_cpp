@@ -12,46 +12,33 @@ void Player::networking() {
     
 }
 
-bool Player::handleEvents() {
-    if (eventDriver->getEvent(&player_event)){
-        switch(player_event.type){
-            case SDL_QUIT: {
-                //SDL_Log("Quiting from player_class");
-                return true;
-            }
+bool Player::handleEvents(SDL_Event event) {
+    //eventDriver->getEvent(&player_event);
 
-            case SDLK_f: {
-                //toggleFullscreen();
-                break;
-            }
+    //if (SDL_PollEvent(&event)){
+        return eventDriver->handleEvents(&event, &direction);
+    //}
 
-            case SDL_KEYDOWN: {
-                this->keyPressed();
-                break;
-            }
-        }
-    }
-
-    return false;
+    //return false;
 }
 
 void Player::keyPressed() {
 
     if(player_event.key.keysym.sym == SDLK_RIGHT){
         
-        Soldier::direction = RIGHT;
+        this->direction = RIGHT;
 
     } else if(player_event.key.keysym.sym == SDLK_LEFT){
 
-        Soldier::direction = LEFT;
+        this->direction = LEFT;
 
     } else if(player_event.key.keysym.sym == SDLK_UP){
 
-        Soldier::direction = UP;
+        this->direction = UP;
 
     } else if(player_event.key.keysym.sym == SDLK_DOWN){
 
-        Soldier::direction = DOWN;
+        this->direction = DOWN;
 
     }
 

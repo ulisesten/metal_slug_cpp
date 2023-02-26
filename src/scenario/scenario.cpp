@@ -45,7 +45,8 @@ void Scenario::actionPerformed() {
 
         frameStart = SDL_GetTicks64();
 
-        quit = gameElement->handleEvents();
+        if(SDL_PollEvent(&event))
+            quit = gameElement->handleEvents(event);
 
         SDL_RenderClear(renderer);
 

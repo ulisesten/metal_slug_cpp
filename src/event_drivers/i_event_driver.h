@@ -6,7 +6,8 @@
 class IEventDriver {
 
 public:
-    virtual bool getEvent(SDL_Event* event) = 0;
+    virtual int getEventType() = 0;
+    virtual bool handleEvents(SDL_Event* event, int* direction) = 0;
 };
 
 #endif //__I_EVENT_DRIVER_H__

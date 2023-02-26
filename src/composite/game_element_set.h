@@ -21,7 +21,7 @@ public:
     void update();
     void setDirection();
     void keyPressed() override;
-    bool handleEvents() override;
+    bool handleEvents(SDL_Event event) override;
 };
 
 #endif //__GAME_ELEMENT_SET_H__
