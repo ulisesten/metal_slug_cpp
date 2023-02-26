@@ -17,6 +17,7 @@
 #include "game_element_set.h"
 #include "i_event_driver.h"
 #include "default_driver.h"
+#include "network_driver.h"
 
 
 int main(){
@@ -74,7 +75,7 @@ int main(){
     SDL_Rect player1PositionRect = {100, 150, 50, 50};
     
     IPlayerRects* mPlayerRects = new ClarkRects();
-    IEventDriver* mEvenDriver = new DefaultDriver();
+    IEventDriver* mEvenDriver = new NetworkDriver();
     IGameElement* player = new Player("Clark", "assets/clark.png", renderer, mPlayerRects, player1PositionRect, mEvenDriver);
     SceneRects m_sceneRects;
 

@@ -38,11 +38,11 @@ bool Player::handleEvents() {
 void Player::keyPressed() {
 
     if(player_event.key.keysym.sym == SDLK_RIGHT){
-        SDL_Log("going right");
+        
         Soldier::direction = RIGHT;
 
     } else if(player_event.key.keysym.sym == SDLK_LEFT){
-        SDL_Log("going left");
+
         Soldier::direction = LEFT;
 
     } else if(player_event.key.keysym.sym == SDLK_UP){
