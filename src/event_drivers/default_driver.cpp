@@ -1,7 +1,7 @@
 #include "default_driver.h"
 
 bool DefaultDriver::handleEvents(SDL_Event* event, int* direction){
-        SDL_Log("event type %d", event->type);
+
         switch(event->type){
             case SDL_QUIT: {
                 //SDL_Log("Quiting from player_class");
@@ -14,7 +14,7 @@ bool DefaultDriver::handleEvents(SDL_Event* event, int* direction){
             }
 
             case SDL_KEYDOWN: {
-                SDL_Log("Local");
+                
                 if(event->user.code != 2) {
                     if(event->key.keysym.sym == SDLK_RIGHT){
             
@@ -25,6 +25,15 @@ bool DefaultDriver::handleEvents(SDL_Event* event, int* direction){
                         *direction = 0;
 
                     }
+                }
+
+                break;
+            }
+
+            case SDL_KEYUP: {
+
+                if(event->user.code != 2) {
+                    
                 }
 
                 break;

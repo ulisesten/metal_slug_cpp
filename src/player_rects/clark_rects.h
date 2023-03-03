@@ -17,18 +17,26 @@ class ClarkRects: public IPlayerRects {
 
 public:
     ClarkRects();
+
+    /// Stand
     SDL_Rect* getTorsoStandRect();
     SDL_Rect* getLegsStandRect();
     SDL_Rect* getTorsoRunningRect();
+
+    /// Running
     SDL_Rect* getLegsRunningRect();
 
-    SDL_Rect getTorsoPositionRect(SDL_Rect src);
 
+    /// Standing
     int getTorsoMaxStandingIndex();
     int getLegsMaxStandingIndex();
     int getTorsoMaxRunningIndex();
+
+    /// Running
     int getLegsMaxRunningIndex();
 
+    /// Positions
+    SDL_Rect getTorsoPositionRect(SDL_Rect src);
 };
 
 #endif //__CLARK_RECTS_H__

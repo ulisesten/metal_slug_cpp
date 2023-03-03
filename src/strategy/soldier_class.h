@@ -10,6 +10,10 @@
 
 class IAttackBehavior;
 
+typedef struct {
+    bool key_right, key_left, key_up, key_down;
+} EVENT_CONTROL;
+
 class Soldier: public BaseObject, public IGameElement {
 
     protected:
@@ -29,6 +33,8 @@ class Soldier: public BaseObject, public IGameElement {
 
         /// @brief Rect array for compose objects like player or soldiers. This is for leg animation
         SDL_Rect* sprite_leg_rects_array = nullptr;
+
+        EVENT_CONTROL event_control = {true};
 
     public:
         Soldier(std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* player_rects, SDL_Rect position_rect);

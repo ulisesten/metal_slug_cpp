@@ -82,13 +82,13 @@ int main(){
     SDL_Log("network %d", mEvenDriver.getEventType());
     SDL_Log("local %d", mLocalEvenDriver.getEventType());
 
-    Player player = Player("Clark", "assets/clark.png", renderer, mPlayerRects, player1PositionRect, &mEvenDriver);
+    //Player player = Player("Clark", "assets/clark.png", renderer, mPlayerRects, player1PositionRect, &mEvenDriver);
     Player player2 = Player("Clark", "assets/clark.png", renderer, mPlayerRects, player2PositionRect, &mLocalEvenDriver);
     SceneRects m_sceneRects;
 
     GameElementSet gameElementSet = GameElementSet();
     gameElementSet.add(&player2);
-    gameElementSet.add(&player);
+    //gameElementSet.add(&player);
     
     Scenario scenario( 
         renderer, 

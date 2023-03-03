@@ -13,13 +13,9 @@ void Player::networking() {
 }
 
 bool Player::handleEvents(SDL_Event event) {
-    //eventDriver->getEvent(&player_event);
 
-    //if (SDL_PollEvent(&event)){
-        return eventDriver->handleEvents(&event, &direction);
-    //}
-
-    //return false;
+    return eventDriver->handleEvents(&event, &direction);
+    
 }
 
 void Player::keyPressed() {
