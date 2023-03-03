@@ -22,7 +22,8 @@ protected:
     SDL_Rect* sprite_rects_array = nullptr;
     SDL_Rect sprite_rect;
     SDL_Rect rect;
-    int sprite_rect_limit;
+    int sprite_torso_rect_limit;
+    int sprite_legs_rect_limit;
 };
 
 #endif // __BASE_OBJECT_H__

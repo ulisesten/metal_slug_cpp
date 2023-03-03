@@ -33,6 +33,8 @@ class Soldier: public BaseObject, public IGameElement {
 
         EVENT_CONTROL event_control = {true};
 
+        IPlayerRects* playerRects = nullptr;
+
     public:
         Soldier(std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* player_rects, SDL_Rect position_rect);
         void attack(Soldier* who);

@@ -5,6 +5,7 @@
 Soldier::Soldier(std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* playerRects, SDL_Rect position_rect): _name(name), _behavior(0), _sprite_path(sprite_path) {
     
     this->renderer = renderer;
+    this->playerRects = playerRects;
     object_surface = IMG_Load(sprite_path);
 
     if(!object_surface)
@@ -26,7 +27,8 @@ Soldier::Soldier(std::string name, const char* sprite_path, SDL_Renderer* render
     sprite_torso_rect = sprite_torso_rects_array[0];
     sprite_leg_rect = sprite_leg_rects_array[0];
 
-    sprite_rect_limit = 4;//(int)(sizeof(sprite_rects_array)/ sizeof(SDL_Rect));
+    sprite_torso_rect_limit = playerRects->getTorsoMaxStandingIndex();//(int)(sizeof(sprite_rects_array)/ sizeof(SDL_Rect));
+    sprite_legs_rect_limit = playerRects->getLegsMaxStandingIndex();
 
     torso_position_rect = playerRects->getTorsoPositionRect(leg_position_rect);
 }
@@ -81,8 +83,22 @@ void Soldier::paint() {
 
 
 void Soldier::update() {
+    if( event_control.key_right || event_control.key_left ) {
 
-    if(torso_index >= sprite_rect_limit) torso_index = 0;
+        if(legs_index >= playerRects->getLegsMaxRunningIndex()) legs_index = 0;
+
+        //sprite_leg_rect = sprite_leg_rects_array[legs_index];
+        sprite_leg_rect = playerRects->getLegsRunningRect()[legs_index];
+        legs_index++;
+
+    }
+
+    else {
+        //sprite_leg_rect = sprite_leg_rects_array[0];
+        sprite_leg_rect = playerRects->getLegsStandRect()[0];
+    }
+
+    if(torso_index >= sprite_torso_rect_limit) torso_index = 0;
 
     sprite_torso_rect = sprite_torso_rects_array[torso_index];
     
