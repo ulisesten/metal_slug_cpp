@@ -56,9 +56,9 @@ const std::string& Soldier::getName() const { return this->_name; };
 void Soldier::move() {
     std::cout << "moving to ";
 
-    if(this->direction == RIGHT){
+    if(this->event_control.direction == RIGHT){
         std::cout << "the right\n";
-    } else if( this->direction == LEFT ){
+    } else if( this->event_control.direction == LEFT ){
         std::cout << "the left\n";
     }
 };
@@ -66,12 +66,12 @@ void Soldier::move() {
 
 void Soldier::paint() {
     if(BaseObject::is_visible){
-        if( direction == RIGHT ) {
+        if( event_control.direction == RIGHT ) {
             SDL_RenderCopy(renderer, object_texture, &sprite_leg_rect,   &leg_position_rect);
             SDL_RenderCopy(renderer, object_texture, &sprite_torso_rect, &torso_position_rect);
         }
 
-        else if( direction == LEFT ) {
+        else if( event_control.direction == LEFT ) {
             SDL_Point point = {(sprite_torso_rect.w/2)-2, sprite_torso_rect.h/2};
             SDL_RenderCopyEx(renderer, object_texture, &sprite_leg_rect,   &leg_position_rect, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
             SDL_RenderCopyEx(renderer, object_texture, &sprite_torso_rect, &torso_position_rect, 0.0, &point, SDL_FLIP_HORIZONTAL);

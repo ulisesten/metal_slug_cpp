@@ -13,7 +13,7 @@ public:
     NetworkDriver(std::string server_url);
 
     int getEventType();
-    bool handleEvents(SDL_Event* event, int* direction) override;
+    bool handleEvents(SDL_Event* event, EVENT_CONTROL* event_control) override;
 };
 
 #endif //__NETWORK_DRIVER_H__

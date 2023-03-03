@@ -28,7 +28,7 @@ NetworkDriver::NetworkDriver(std::string server_url) {
 
 }
 
-bool NetworkDriver::handleEvents(SDL_Event* event, int* direction){
+bool NetworkDriver::handleEvents(SDL_Event* event, EVENT_CONTROL* event_control){
     
         SDL_Log("network event type %d", event->type);
         switch(event->type){
@@ -46,11 +46,11 @@ bool NetworkDriver::handleEvents(SDL_Event* event, int* direction){
                 if(event->user.code == 2) {
                     if(event->key.keysym.sym == SDLK_RIGHT){
             
-                        *direction = 1;
+                        event_control->direction = 1;
 
                     } else if(event->key.keysym.sym == SDLK_LEFT){
 
-                        *direction = 0;
+                        event_control->direction = 0;
 
                     }
                 }

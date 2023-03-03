@@ -14,27 +14,27 @@ void Player::networking() {
 
 bool Player::handleEvents(SDL_Event event) {
 
-    return eventDriver->handleEvents(&event, &direction);
-    
+    return eventDriver->handleEvents(&event, &event_control);
+
 }
 
 void Player::keyPressed() {
 
     if(player_event.key.keysym.sym == SDLK_RIGHT){
         
-        this->direction = RIGHT;
+        this->event_control.direction = RIGHT;
 
     } else if(player_event.key.keysym.sym == SDLK_LEFT){
 
-        this->direction = LEFT;
+        this->event_control.direction = LEFT;
 
     } else if(player_event.key.keysym.sym == SDLK_UP){
 
-        this->direction = UP;
+        this->event_control.direction = UP;
 
     } else if(player_event.key.keysym.sym == SDLK_DOWN){
 
-        this->direction = DOWN;
+        this->event_control.direction = DOWN;
 
     }
 

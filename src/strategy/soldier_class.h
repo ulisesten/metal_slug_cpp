@@ -6,13 +6,10 @@
 #include "i_game_element.h"
 #include "i_player_rects.h"
 #include <SDL2/SDL_image.h>
+#include "i_event_driver.h"
 
 
 class IAttackBehavior;
-
-typedef struct {
-    bool key_right, key_left, key_up, key_down;
-} EVENT_CONTROL;
 
 class Soldier: public BaseObject, public IGameElement {
 
@@ -20,7 +17,7 @@ class Soldier: public BaseObject, public IGameElement {
         std::string _name;
         IAttackBehavior* _behavior = nullptr;
         const char* _sprite_path = nullptr;
-        int direction;
+        //int direction;
 
         SDL_Rect sprite_torso_rect;
         SDL_Rect sprite_leg_rect;

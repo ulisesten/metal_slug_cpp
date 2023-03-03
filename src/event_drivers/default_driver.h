@@ -7,7 +7,7 @@ class DefaultDriver: public IEventDriver {
 
 public:
     int getEventType();
-    bool handleEvents(SDL_Event* event, int* direction) override;
+    bool handleEvents(SDL_Event* event, EVENT_CONTROL* event_control) override;
     
 };
 
