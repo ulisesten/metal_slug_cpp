@@ -20,7 +20,9 @@ public:
     void paint();
     void update();
     void setDirection();
-    void keyPressed(SDL_Event event);
+    void keyPressed() override;
+    bool handleEvents(SDL_Event event) override;
+    void setGroundBoundsArray(int* ground_bounds_array) override;
 };
 
 #endif //__GAME_ELEMENT_SET_H__

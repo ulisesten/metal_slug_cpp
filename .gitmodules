@@ -1,0 +1,3 @@
+[submodule "modules/socket.io"]
+	path = modules/socket.io
+	url = https://github.com/socketio/socket.io-client-cpp.git

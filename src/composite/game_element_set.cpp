@@ -28,20 +28,37 @@ void GameElementSet::paint() {
 
 void GameElementSet::update() {
 
-    for (auto & el: elementsList){
+    for (IGameElement* el: elementsList){
         el->update();
     }
 
 }
 
-void GameElementSet::keyPressed(SDL_Event event) {
+bool GameElementSet::handleEvents(SDL_Event event) {
+
+    for (IGameElement* el: elementsList){
+
+        if(el->handleEvents(event)) return true;
+        
+    }
+
+    return false;
+}
+
+void GameElementSet::keyPressed() {
     for (auto & el: elementsList){
-        el->keyPressed(event);
+        el->keyPressed();
     }
 }
 
 void GameElementSet::setDirection() {
     for (auto & el: elementsList){
         el->setDirection();
+    }
+}
+
+void GameElementSet::setGroundBoundsArray(int* ground_bounds_array){
+    for (auto & el: elementsList){
+        el->setGroundBoundsArray(ground_bounds_array);
     }
 }

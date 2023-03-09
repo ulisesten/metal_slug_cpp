@@ -8,8 +8,8 @@ class IScenario {
 public:
     virtual void paint() = 0;
     virtual void actionPerformed() = 0;
-    virtual void keyPressed(SDL_Event event) = 0;
-    virtual void keyReleased(SDL_Event event) = 0;
+    //virtual void keyPressed() = 0;
+    //virtual void keyReleased() = 0;
 };
 
 #endif //__ISCENARIO_H__

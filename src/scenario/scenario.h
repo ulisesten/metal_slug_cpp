@@ -32,17 +32,11 @@ class Scenario: public IScenario {
     // need to abstract this rects
     SDL_Rect rect;
 
-    /*SDL_Rect position_rect1 = {0, 15,  502, 260};
-    SDL_Rect position_rect2 = {0, 15,  502, 260};
-    SDL_Rect position_rect3 = {0, -50, 502, 260};
-
-    SDL_Rect frame_rect1 = { 10, 0,   502, 260 };
-    SDL_Rect frame_rect2 = { 10, 560, 270, 300 };
-    SDL_Rect frame_rect3 = { 10, 408, 250, 130 };*/
-
     SceneRects* sceneRects;
 
     SDL_Texture* texture = nullptr;
+
+    int* ground_bounds_array;
 
 
 public:
@@ -51,9 +45,6 @@ public:
     void paint();
 
     void actionPerformed();
-    bool handleEvents();
-    void keyPressed(SDL_Event);
-    void keyReleased(SDL_Event);
 
     int getWidth() const {
         return maxWidth;

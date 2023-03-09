@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-Player::Player(const std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* player_rects): Soldier(name, sprite_path, renderer, player_rects) {
-    //Soldier::_sprite_path = sprite_path;
-
+Player::Player(const std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* player_rects, SDL_Rect position_rect, IEventDriver* eventDriver): Soldier(name, sprite_path, renderer, player_rects, position_rect) {
+    this->eventDriver = eventDriver;
+    
 
 }
 
@@ -12,24 +12,34 @@ void Player::networking() {
     
 }
 
-void Player::keyPressed(SDL_Event event) {
+bool Player::handleEvents(SDL_Event event) {
 
+    return eventDriver->handleEvents(&event, &event_control);
 
-    if(event.key.keysym.sym == SDLK_RIGHT){
+}
 
-        Soldier::direction = RIGHT;
+void Player::keyPressed() {
 
-    } else if(event.key.keysym.sym == SDLK_LEFT){
+    if(player_event.key.keysym.sym == SDLK_RIGHT){
+        
+        this->event_control.direction = RIGHT;
 
-        Soldier::direction = LEFT;
+    } else if(player_event.key.keysym.sym == SDLK_LEFT){
 
-    } else if(event.key.keysym.sym == SDLK_UP){
+        this->event_control.direction = LEFT;
 
-        Soldier::direction = UP;
+    } else if(player_event.key.keysym.sym == SDLK_UP){
 
-    } else if(event.key.keysym.sym == SDLK_DOWN){
+        this->event_control.direction = UP;
 
-        Soldier::direction = DOWN;
+    } else if(player_event.key.keysym.sym == SDLK_DOWN){
+
+        this->event_control.direction = DOWN;
 
     }
+
 };
+
+void Player::setGroundBoundsArray(int* ground_bounds_array){
+    Soldier::ground_bounds_array = ground_bounds_array;
+}
