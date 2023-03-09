@@ -11,7 +11,6 @@
 #include "soldier_class.h"
 #include "player_class.h"
 #include "scenario.h"
-
 #include "clark_rects.h"
 #include "i_player_rects.h"
 #include "game_element_set.h"
@@ -19,8 +18,12 @@
 #include "default_driver.h"
 #include "network_driver.h"
 
+#include "util.h"
 
-int main(){
+void toggleFullscreen(SDL_Window* window);
+
+int main() {
+
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
     int maxWidth = 502, maxHeight = 260;
@@ -31,15 +34,13 @@ int main(){
     }
 
     window = SDL_CreateWindow("Metal Slug",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,502, 260,SDL_WINDOW_OPENGL);
-
+    
 
     if(!window) {
         SDL_Log("Could not create window: %s\n", SDL_GetError());
         exit(-2);
     }
 
-    
-    //SDL_GetWindowSize(window, &maxWidth, &maxHeight);
 
 
     if(IMG_Init(IMG_INIT_JPG) < 0) {
@@ -73,22 +74,19 @@ int main(){
     */
 
     SDL_Rect player1PositionRect = {100, 150, 50, 50};
-    SDL_Rect player2PositionRect = {150, 145, 50, 50};
+    SDL_Rect player2PositionRect = {  -50,   0, 50, 50};
     SDL_Event m_event;
     IPlayerRects* mPlayerRects = new ClarkRects();
-    NetworkDriver mEvenDriver = NetworkDriver("http://127.0.0.1:8080");
+    // NetworkDriver mEvenDriver = NetworkDriver("http://127.0.0.1:8080");
     DefaultDriver mLocalEvenDriver = DefaultDriver();
 
-    SDL_Log("network %d", mEvenDriver.getEventType());
-    SDL_Log("local %d", mLocalEvenDriver.getEventType());
-
-    //Player player = Player("Clark", "assets/clark.png", renderer, mPlayerRects, player1PositionRect, &mEvenDriver);
+    // Player player = Player("Clark", "assets/clark.png", renderer, mPlayerRects, player1PositionRect, &mEvenDriver);
     Player player2 = Player("Clark", "assets/clark.png", renderer, mPlayerRects, player2PositionRect, &mLocalEvenDriver);
     SceneRects m_sceneRects;
 
     GameElementSet gameElementSet = GameElementSet();
     gameElementSet.add(&player2);
-    //gameElementSet.add(&player);
+    // gameElementSet.add(&player);
     
     Scenario scenario( 
         renderer, 
@@ -102,4 +100,14 @@ int main(){
     scenario.actionPerformed();
 
     return 0;
+}
+
+void toggleFullscreen(SDL_Window* window) {
+
+    Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
+
+    bool IsFullscreen = SDL_GetWindowFlags(window) & FullscreenFlag;
+    SDL_SetWindowFullscreen(window, IsFullscreen ? 0 : FullscreenFlag);
+    SDL_ShowCursor(IsFullscreen);
+
 }

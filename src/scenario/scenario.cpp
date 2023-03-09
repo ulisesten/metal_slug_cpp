@@ -27,16 +27,32 @@ Scenario::Scenario(SDL_Renderer* renderer, int maxWidth, int maxHeight, IGameEle
 
     /// Mouse declaration
     this->gameElement = gameElement;
+    uint32_t m_size;
+    sceneRects->getGroundBoundsArray(nullptr, &m_size);
+    ground_bounds_array = new int[m_size];
+    sceneRects->getGroundBoundsArray(this->ground_bounds_array, &m_size);
+
+    /*while(*this->ground_bounds_array) {
+
+        SDL_Log("coor: %d", *(this)->ground_bounds_array);
+        this->ground_bounds_array++;
+
+    }*/
+
+    gameElement->setGroundBoundsArray(this->ground_bounds_array);
 
     SDL_FreeSurface(surface);
+
 }
 
 void Scenario::paint() {
+
     SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect3(), sceneRects->getPositionRect3());
     SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect2(), sceneRects->getPositionRect2());
     SDL_RenderCopy(renderer, texture, sceneRects->getFrameRect1(), sceneRects->getPositionRect1());
 
     gameElement->paint();
+
 }
 
 void Scenario::actionPerformed() {
@@ -55,14 +71,14 @@ void Scenario::actionPerformed() {
         current = SDL_GetTicks64();
         current_position = SDL_GetTicks64();
 
-        if (current > past + 170) {
+        if (current > past + 130) {
             past = current;
             gameElement->update();
         }
 
-        if (current_position > past_position + 20) {
+        if (current_position > past_position + 10) {
             past_position = current_position;
-            //gameElement->move();
+            gameElement->move();
         }
 
         SDL_RenderPresent(renderer);
@@ -74,15 +90,5 @@ void Scenario::actionPerformed() {
         }
 
     }
-
-}
-
-void toggleFullscreen(SDL_Window* window) {
-
-    Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
-
-    bool IsFullscreen = SDL_GetWindowFlags(window) & FullscreenFlag;
-    SDL_SetWindowFullscreen(window, IsFullscreen ? 0 : FullscreenFlag);
-    SDL_ShowCursor(IsFullscreen);
 
 }

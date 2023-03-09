@@ -12,7 +12,6 @@ class NetworkDriver: public IEventDriver {
 public:
     NetworkDriver(std::string server_url);
 
-    int getEventType();
     bool handleEvents(SDL_Event* event, EVENT_CONTROL* event_control) override;
 };
 

@@ -19,6 +19,7 @@ public:
     virtual void setDirection() = 0;
     virtual void keyPressed() = 0;
     virtual bool handleEvents(SDL_Event event) = 0;
+    virtual void setGroundBoundsArray(int* ground_bounds_array) = 0;
 };
 
 #endif //__I_GAME_ELEMENT_H__

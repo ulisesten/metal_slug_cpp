@@ -11,7 +11,6 @@ typedef struct {
 class IEventDriver {
 
 public:
-    virtual int getEventType() = 0;
     virtual bool handleEvents(SDL_Event* event, EVENT_CONTROL* event_control) = 0;
 };
 

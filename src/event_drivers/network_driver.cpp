@@ -30,38 +30,43 @@ NetworkDriver::NetworkDriver(std::string server_url) {
 
 bool NetworkDriver::handleEvents(SDL_Event* event, EVENT_CONTROL* event_control){
     
-        SDL_Log("network event type %d", event->type);
-        switch(event->type){
-            case SDL_QUIT: {
-                return true;
-            }
+    switch(event->type){
 
-            case SDLK_f: {
-                //toggleFullscreen();
-                break;
-            }
+        case SDL_KEYDOWN: {
 
-            case SDL_KEYDOWN: {
-                SDL_Log("Network");
-                if(event->user.code == 2) {
-                    if(event->key.keysym.sym == SDLK_RIGHT){
-            
-                        event_control->direction = 1;
+            if(event->user.code == 2) {
+                if(event->key.keysym.sym == SDLK_RIGHT){
+        
+                    event_control->direction = 1;
 
-                    } else if(event->key.keysym.sym == SDLK_LEFT){
+                } else if(event->key.keysym.sym == SDLK_LEFT){
 
-                        event_control->direction = 0;
+                    event_control->direction = 0;
 
-                    }
                 }
-                break;
             }
+
+            break;
+            
         }
+
+        case SDL_KEYUP: {
+
+            if(event->user.code == 2) {
+                if(event->key.keysym.sym == SDLK_RIGHT){
+        
+                    event_control->key_right = false;
+
+                } else if(event->key.keysym.sym == SDLK_LEFT){
+
+                    event_control->key_left = false;
+
+                }
+            }
+
+            break;
+        }
+    }
         
     return false;
 }
-
-int NetworkDriver::getEventType(){
-    return 2;
-}
-

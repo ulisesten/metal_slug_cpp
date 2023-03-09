@@ -2,6 +2,7 @@
 #define __SCENE_RECTS_H__
 
 #include <SDL2/SDL.h>
+#include "util.h"
 
 class SceneRects {
     SDL_Rect position_rect1 = {0,  15, 502, 260};
@@ -11,6 +12,9 @@ class SceneRects {
     SDL_Rect frame_rect1 = { 10, 0,   502, 260 };
     SDL_Rect frame_rect2 = { 10, 560, 270, 300 };
     SDL_Rect frame_rect3 = { 10, 408, 250, 130 };
+
+    Util* util;
+    int* ground_bounds_array;
 
 public:
 
@@ -31,6 +35,8 @@ public:
     SDL_Rect* getFrameRect1();
     SDL_Rect* getFrameRect2();
     SDL_Rect* getFrameRect3();
+
+    void getGroundBoundsArray(int* array, uint32_t* size);
 
 };
 

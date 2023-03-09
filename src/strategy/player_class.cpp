@@ -39,3 +39,7 @@ void Player::keyPressed() {
     }
 
 };
+
+void Player::setGroundBoundsArray(int* ground_bounds_array){
+    Soldier::ground_bounds_array = ground_bounds_array;
+}

@@ -13,5 +13,6 @@ public:
     void networking();
     void keyPressed() override;
     bool handleEvents(SDL_Event event) override;
+    void setGroundBoundsArray(int* ground_bounds_array) override;
 
 };

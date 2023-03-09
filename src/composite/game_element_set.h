@@ -22,6 +22,7 @@ public:
     void setDirection();
     void keyPressed() override;
     bool handleEvents(SDL_Event event) override;
+    void setGroundBoundsArray(int* ground_bounds_array) override;
 };
 
 #endif //__GAME_ELEMENT_SET_H__

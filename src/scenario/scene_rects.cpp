@@ -19,6 +19,12 @@ SceneRects::SceneRects(
     this->frame_rect1 = frame_rect1;
     this->frame_rect2 = frame_rect2;
     this->frame_rect3 = frame_rect3;
+    util = new Util();
+
+    //uint32_t m_size;
+    //util->loadCoorsFromFile("data/scene1-ground.txt", nullptr, &m_size);
+    //ground_bounds_array = new int[m_size];
+    //util->loadCoorsFromFile("data/scene1-ground.txt", ground_bounds_array, &m_size);
 
 }
 
@@ -45,3 +51,7 @@ SDL_Rect* SceneRects::getFrameRect2(){
 SDL_Rect* SceneRects::getFrameRect3(){
     return &frame_rect3;
 };
+
+void SceneRects::getGroundBoundsArray(int* array, uint32_t* size) {
+    util->loadCoorsFromFile("data/scene1-ground.txt", array, size);
+}

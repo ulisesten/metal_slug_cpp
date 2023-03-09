@@ -20,6 +20,7 @@ set(SRC src/main.cpp
         src/player_rects/clark_rects.cpp
         src/event_drivers/default_driver.cpp
         src/event_drivers/network_driver.cpp
+        ${PROJECT_SOURCE_DIR}/src/utils/util.cpp
 )
 
 
@@ -36,6 +37,7 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/src/player_rects
         ${PROJECT_SOURCE_DIR}/src/event_drivers
         ${PROJECT_SOURCE_DIR}/modules/socket.io/src
+        ${PROJECT_SOURCE_DIR}/src/utils
 )
 
 target_link_libraries(${PROJECT_NAME} SDL2 SDL2_image sioclient)

@@ -56,3 +56,9 @@ void GameElementSet::setDirection() {
         el->setDirection();
     }
 }
+
+void GameElementSet::setGroundBoundsArray(int* ground_bounds_array){
+    for (auto & el: elementsList){
+        el->setGroundBoundsArray(ground_bounds_array);
+    }
+}
