@@ -16,8 +16,8 @@ C++, CMake and SDL2 "clone" of Metal Slug.
 We are currently working on dev branch
 
 ## Contributors
--Isnaya Andrade 
--Ulises Violento Martinez
+- Isnaya Andrade 
+- Ulises Violento Martinez
 
 ## Contribute
 
