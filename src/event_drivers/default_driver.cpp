@@ -26,6 +26,10 @@ bool DefaultDriver::handleEvents(SDL_Event* event, EVENT_CONTROL* event_control)
                     event_control->direction = 0;
                     event_control->key_left = true;
 
+                } else if(event->key.keysym.sym == SDLK_s){
+
+                    event_control->key_shoot = true;
+
                 } else if( event->key.keysym.sym == SDLK_ESCAPE) {
                     return true;
                 }
@@ -44,6 +48,15 @@ bool DefaultDriver::handleEvents(SDL_Event* event, EVENT_CONTROL* event_control)
                 } else if(event->key.keysym.sym == SDLK_LEFT){
 
                     event_control->key_left = false;
+
+                }
+                
+                
+                
+                
+                if(event->key.keysym.sym == SDLK_s){
+
+                    event_control->key_shoot = false;
 
                 }
             }

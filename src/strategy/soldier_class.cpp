@@ -79,6 +79,7 @@ void Soldier::paint() {
 
         leg_position_rect.y = *ground_bounds_array + 30;
         torso_position_rect.y = *ground_bounds_array;
+        torso_position_rect.w = 15 + sprite_torso_rect.w;
 
         if( event_control.direction == RIGHT ) {
             SDL_RenderCopy(renderer, object_texture, &sprite_leg_rect,   &leg_position_rect);
@@ -105,9 +106,7 @@ void Soldier::update() {
         sprite_leg_rect = playerRects->getLegsRunningRect()[legs_index];
         legs_index++;
 
-    }
-
-    else {
+    } else {
 
         sprite_leg_rect = playerRects->getLegsStandRect()[0];
         legs_index = 0;
@@ -115,10 +114,27 @@ void Soldier::update() {
     }
 
 
-    /** Torso animation */
-    if(torso_index >= sprite_torso_rect_limit) torso_index = 0;
+    if( event_control.key_shoot ){
+        torso_index = 0;
+        event_control.is_shooting = true;
+    }
+    
+    if( event_control.is_shooting ) {
 
-    sprite_torso_rect = sprite_torso_rects_array[torso_index];
+        if(torso_index >= playerRects->getTorsoMaxShootingIndex()) {
+            torso_index = 0;
+            event_control.is_shooting = false;
+        }
+
+        sprite_torso_rect = playerRects->getTorsoShootingRect()[torso_index];
+        
+
+    } else {
+
+        if(torso_index >= playerRects->getTorsoMaxStandingIndex()) torso_index = 0;
+        sprite_torso_rect = playerRects->getTorsoStandRect()[torso_index];
+
+    }
     
     torso_index++;
     

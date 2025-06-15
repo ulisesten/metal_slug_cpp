@@ -39,3 +39,17 @@ void Util::loadCoorsFromFile(const char* filepath, int* coors, uint32_t* size) {
     }
 
 }
+
+
+
+void Util::toggleFullscreen(SDL_Window* window) {
+
+    if(!window) SDL_Log("No valid window provided");
+    
+    Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
+
+    bool IsFullscreen = SDL_GetWindowFlags(window) & FullscreenFlag;
+    SDL_SetWindowFullscreen(window, IsFullscreen ? 0 : FullscreenFlag);
+    SDL_ShowCursor(IsFullscreen);
+
+}

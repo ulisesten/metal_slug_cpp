@@ -25,19 +25,12 @@ Scenario::Scenario(SDL_Renderer* renderer, int maxWidth, int maxHeight, IGameEle
     rect.w = maxWidth;
     rect.h = maxHeight;
 
-    /// Mouse declaration
     this->gameElement = gameElement;
+    
     uint32_t m_size;
     sceneRects->getGroundBoundsArray(nullptr, &m_size);
     ground_bounds_array = new int[m_size];
     sceneRects->getGroundBoundsArray(this->ground_bounds_array, &m_size);
-
-    /*while(*this->ground_bounds_array) {
-
-        SDL_Log("coor: %d", *(this)->ground_bounds_array);
-        this->ground_bounds_array++;
-
-    }*/
 
     gameElement->setGroundBoundsArray(this->ground_bounds_array);
 
@@ -60,11 +53,11 @@ void Scenario::actionPerformed() {
     while (!quit) {
 
         frameStart = SDL_GetTicks64();
-
-        if(SDL_PollEvent(&event))
-            quit = gameElement->handleEvents(event);
-
+        
         SDL_RenderClear(renderer);
+
+        this->handleEvents();
+
 
         this->paint();
 
@@ -91,4 +84,22 @@ void Scenario::actionPerformed() {
 
     }
 
+}
+
+void Scenario::handleEvents() {
+    if(SDL_PollEvent(&event)) {
+        quit = gameElement->handleEvents(event);
+
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_f){
+            Util util; util.toggleFullscreen(this->window);
+        }
+    }
+}
+
+void Scenario::setWindow(SDL_Window* window) {
+    this->window = window;
+}
+
+Scenario::~Scenario(){
+    delete ground_bounds_array;
 }

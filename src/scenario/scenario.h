@@ -7,11 +7,13 @@
 
 #include "i_scenario.h"
 #include <scene_rects.h>
+#include "util.h"
 //#include "SDL.h"
 //#include "mouse.h"
 
 class Scenario: public IScenario {
 
+    SDL_Window* window = nullptr;
     SDL_Surface* surface = nullptr;
     SDL_Renderer* renderer = nullptr;
     int maxWidth, maxHeight;
@@ -53,6 +55,12 @@ public:
     int getHeight() const {
         return maxHeight;
     }
+
+    void handleEvents();
+
+    void setWindow(SDL_Window* window);
+
+    ~Scenario();
 };
 
 #endif //__SCENARIO_H__

@@ -2,7 +2,15 @@
 
 #include <iostream>
 
-Player::Player(const std::string name, const char* sprite_path, SDL_Renderer* renderer, IPlayerRects* player_rects, SDL_Rect position_rect, IEventDriver* eventDriver): Soldier(name, sprite_path, renderer, player_rects, position_rect) {
+Player::Player(
+    const std::string name,
+    const char* sprite_path,
+    SDL_Renderer* renderer,
+    IPlayerRects* player_rects, 
+    SDL_Rect position_rect,
+    IEventDriver* eventDriver ) : Soldier(name, sprite_path, renderer, player_rects, position_rect) {
+    
+    
     this->eventDriver = eventDriver;
     
 

@@ -5,6 +5,7 @@
 
 typedef struct {
     bool key_right, key_left, key_up, key_down;
+    bool key_shoot = false, is_shooting = false;
     int direction;
 } EVENT_CONTROL;
 

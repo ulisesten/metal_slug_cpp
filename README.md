@@ -22,3 +22,7 @@ This project implements strategy and composite design patterns; in the future we
 a builder pattern.
 
 If you are familiar with these patterns, you will quickly undertand the project structure.
+
+## TODO
+
+- Pass Window pointer to sceneario to handle full screen function

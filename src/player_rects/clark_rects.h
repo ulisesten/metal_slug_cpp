@@ -12,6 +12,7 @@ class ClarkRects: public IPlayerRects {
     SDL_Rect legsStandRect[1];
     //SDL_Rect torsoRunningRect[4];
     SDL_Rect legsRunningRect[6];
+    SDL_Rect torsoShootingRect[9];
 
     SDL_Rect torso_position_rect;
 
@@ -26,6 +27,9 @@ public:
     /// Running
     SDL_Rect* getLegsRunningRect();
 
+    /// Shooting
+    SDL_Rect* getTorsoShootingRect();
+
 
     /// Standing
     int getTorsoMaxStandingIndex();
@@ -34,6 +38,9 @@ public:
 
     /// Running
     int getLegsMaxRunningIndex();
+
+    /// shooting
+    int getTorsoMaxShootingIndex();
 
     /// Positions
     SDL_Rect getTorsoPositionRect(SDL_Rect src);

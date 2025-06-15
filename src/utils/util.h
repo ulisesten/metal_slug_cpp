@@ -13,6 +13,7 @@ class Util {
 
 public:
     void loadCoorsFromFile(const char* filepath, int* coors, uint32_t* size);
+    void toggleFullscreen(SDL_Window* window);
 
 };
 

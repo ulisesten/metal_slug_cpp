@@ -17,23 +17,21 @@
 #include "i_event_driver.h"
 #include "default_driver.h"
 #include "network_driver.h"
-
 #include "util.h"
 
-void toggleFullscreen(SDL_Window* window);
 
 int main() {
 
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
-    int maxWidth = 502, maxHeight = 260;
+    int max_width = 502, max_height = 260;
 
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_JOYSTICK) < 0) {
         SDL_Log("Error SDL_Init %s", SDL_GetError());
         exit(-1);
     }
 
-    window = SDL_CreateWindow("Metal Slug",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,502, 260,SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("Metal Slug",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, max_width, max_height,SDL_WINDOW_OPENGL);
     
 
     if(!window) {
@@ -74,7 +72,7 @@ int main() {
     */
 
     SDL_Rect player1PositionRect = {100, 150, 50, 50};
-    SDL_Rect player2PositionRect = {  -50,   0, 50, 50};
+    SDL_Rect player2PositionRect = {-50,   0, 50, 50};
     SDL_Event m_event;
     IPlayerRects* mPlayerRects = new ClarkRects();
     // NetworkDriver mEvenDriver = NetworkDriver("http://127.0.0.1:8080");
@@ -87,27 +85,19 @@ int main() {
     GameElementSet gameElementSet = GameElementSet();
     gameElementSet.add(&player2);
     // gameElementSet.add(&player);
-    
+
+
     Scenario scenario( 
         renderer, 
-        maxWidth, 
-        maxHeight,
+        max_width, 
+        max_height,
         &gameElementSet, 
         "assets/mision1.png",
         &m_sceneRects
     );
 
+    scenario.setWindow(window);
     scenario.actionPerformed();
 
     return 0;
-}
-
-void toggleFullscreen(SDL_Window* window) {
-
-    Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
-
-    bool IsFullscreen = SDL_GetWindowFlags(window) & FullscreenFlag;
-    SDL_SetWindowFullscreen(window, IsFullscreen ? 0 : FullscreenFlag);
-    SDL_ShowCursor(IsFullscreen);
-
 }
