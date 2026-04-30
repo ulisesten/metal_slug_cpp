@@ -2,6 +2,11 @@
 
 C++, CMake and SDL2 "clone" of Metal Slug.
 
+
+## Dependencies
+
+    sudo dnf install SDL2-devel SDL2_image-devel
+
 ## Build
 
     cmake -S . -B build

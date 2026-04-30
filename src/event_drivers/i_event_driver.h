@@ -12,6 +12,12 @@ typedef struct {
 class IEventDriver {
 
 public:
+    enum directions {
+        BAKCWARD = 0,
+        FORWARD = 1
+    };
+
+public:
     virtual bool handleEvents(SDL_Event* event, EVENT_CONTROL* event_control) = 0;
 };
 

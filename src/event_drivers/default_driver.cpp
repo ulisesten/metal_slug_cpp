@@ -18,12 +18,12 @@ bool DefaultDriver::handleEvents(SDL_Event* event, EVENT_CONTROL* event_control)
             if(event->user.code != 2) {
                 if(event->key.keysym.sym == SDLK_RIGHT){
         
-                    event_control->direction = 1;
+                    event_control->direction = FORWARD;
                     event_control->key_right = true;
 
                 } else if(event->key.keysym.sym == SDLK_LEFT){
 
-                    event_control->direction = 0;
+                    event_control->direction = BAKCWARD;
                     event_control->key_left = true;
 
                 } else if(event->key.keysym.sym == SDLK_s){
@@ -50,9 +50,6 @@ bool DefaultDriver::handleEvents(SDL_Event* event, EVENT_CONTROL* event_control)
                     event_control->key_left = false;
 
                 }
-                
-                
-                
                 
                 if(event->key.keysym.sym == SDLK_s){
 

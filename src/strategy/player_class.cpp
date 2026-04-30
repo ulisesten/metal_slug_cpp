@@ -29,7 +29,6 @@ bool Player::handleEvents(SDL_Event event) {
 void Player::keyPressed() {
 
     if(player_event.key.keysym.sym == SDLK_RIGHT){
-        
         this->event_control.direction = RIGHT;
 
     } else if(player_event.key.keysym.sym == SDLK_LEFT){
